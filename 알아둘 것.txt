@@ -1,0 +1,38 @@
+변수명
+    명사 : var 몸무게, var weight
+    동명사 : var 누나키, var sisterHeight,
+    명사+명사+... : var 평균더한값, var valueSumAverage
+함수명
+    동사 : fun 계산하라(), fun calculate()
+    동사+명사 : fun 더하라두값을(첫번째숫자:int,두번째숫자,int):int, fun addTwoValue(firstVal:int,secondVal:int):int
+                fun 출력하라삼각형을(), fun printTriangle()
+-----------------------------
+[코드 리팩토링,정렬] Ctrl + Alt + l
+[Live template] Ctrl + j
+[Paste from history] Ctrl + Shift + v
+[이름 재정의] Shift + f6
+[블럭 삭제] Ctrl + backspace
+[한줄 삭제] Ctrl + y
+[한줄 복사] Ctrl + d
+[한줄 잘라내기] Shift + del
+[코드 완성] Ctrl + space
+[Git Commit] Ctrl + k
+[Github Push] Ctrl + Shift + k
+[선택 확장] Ctrl + w
+[선택 축소] Ctrl + Shift + w
+[Surround with] Ctrl + Alt + t
+[검색 모든파일] Ctrl + Shift + f
+[검색 전체] Shift + Shift
+[바꾸기] Ctrl + r
+[Line 이동] Shift + Alt + Up,Down Key
+[Statement 이동] Shift + Ctrl + Up,Down Key
+-------------------------------
+[액션 검색] Ctrl + Shift + a
+[코드 제네레이터] Ctrl + insert
+[매개변수 보기] Ctrl + p
+[자동 import] Ctrl + Alt + o
+[구조(함수)보기] Ctrl + f12
+[Settings] Ctrl + Alt + s
+[최근파일] Ctrl + e
+---
+

@@ -1,0 +1,13 @@
+[ {
+  "name" : "Harry Potter",
+  "bookNum" : "002",
+  "borrowable" : true
+}, {
+  "name" : "Sherlock Holmes #1",
+  "bookNum" : "003",
+  "borrowable" : true
+}, {
+  "name" : "Sherlock Holmes #2",
+  "bookNum" : "004",
+  "borrowable" : true
+} ]
