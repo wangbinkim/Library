@@ -21,7 +21,7 @@ fun saveData() {
 fun loadData() {
     val mapper = jacksonObjectMapper()
 
-    books = mapper.readValue<ArrayList<Book>>(File("./my_books_saveData_json"))
+    books = mapper.readValue<ArrayList<Book>>(File("./my_books_saveData.json"))
 
     people = mapper.readValue<ArrayList<Person>>(File("./my_people_saveData.json"))
 
