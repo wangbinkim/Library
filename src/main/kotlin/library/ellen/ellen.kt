@@ -6,15 +6,9 @@ import library.ellen.data.*
 fun main() {
 
     makeBasicInformation()
-    borrowBook("001", "001")
-    borrowBook("004", "002")
-    borrowBook("002", "005")
-//    returnBorrowedBooks("001")
-//    returnBorrowedBooks("002")
-//    println(printBorrowedBook())
+    saveData()
 
-    writeBooks()
-    writePeople()
+    // 전달 to 민성 시작할때 로드 종료할 때 세이브 할 것
 }
 
 fun searchBook(bookName: String): ArrayList<Book>? {
@@ -77,6 +71,7 @@ fun printBorrowedBook(): List<Person>? {
         return p
     } else return null
 }
+
 
 fun L(s: Any) {
     println("ellen log : $s")

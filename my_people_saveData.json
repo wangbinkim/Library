@@ -1,13 +1,13 @@
 [ {
   "name" : "Ellen",
-  "personNum" : "002",
+  "personNum" : "001",
   "borrowedBookInfo" : [ ]
 }, {
   "name" : "Justin",
-  "personNum" : "003",
+  "personNum" : "002",
   "borrowedBookInfo" : [ ]
 }, {
   "name" : "WB",
-  "personNum" : "004",
+  "personNum" : "003",
   "borrowedBookInfo" : [ ]
 } ]
