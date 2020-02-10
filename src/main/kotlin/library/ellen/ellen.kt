@@ -31,7 +31,7 @@ fun borrowBook(personNumber: String, bookNumber: String): ReturnedInfo {
         if (b != null) {
             if (!b.borrowable) {
                 L("대출중")
-                ReturnedInfo(p.name, b.name, 130)
+                return ReturnedInfo(p.name, b.name, 130)
             } else {
                 L("${p.name} 님 ${b.name} 가 대출됨") // 지우기
                 p.borrowedBookInfo.add(b)
