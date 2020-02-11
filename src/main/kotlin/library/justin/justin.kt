@@ -2,24 +2,8 @@ package library.justin
 
 import library.ellen.data.*
 
-data class 관리자(
-    var 아이디: String,
-    var 패스워드: String
-)
-
-var 관리자들 = ArrayList<관리자>()
-
-fun 만들어라관리자정보를() {
-    var 관리자정보1 = 관리자("천재민성님", "snskqkqh")
-    var 관리자정보2 = 관리자("바보태영님", "alstjdcjswo")
-    관리자들.add(관리자정보1)
-    관리자들.add(관리자정보2)
-
-}
-
 fun main() {
     library.ellen.data.loadData()
-    만들어라관리자정보를()
     //makeBasicInformation()
     var 관리자 = 관리자들
     var d = 관리자들.find { it.아이디 == "천재민성님" }
@@ -107,10 +91,13 @@ fun 검색해서출력하라책을() {
 // todo 로그인하는 코드 만들기
 fun print대출현황을() {
     var 대출현황 = library.ellen.printBorrowedBook()
-
     if (대출현황 != null) {
         대출현황.forEach {
-            println("책이름 : ${it.name} 회원번호 : ${it.personNum}")
+            print("책이름 : ")
+            it.borrowedBookInfo.forEach {
+                    b -> print("[${b.name}] ")
+            }
+            println("회원번호 : ${it.personNum}")
         }
     } else {
         println("대출된 책이 없습니다.")

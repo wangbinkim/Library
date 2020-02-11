@@ -22,7 +22,12 @@ data class ReturnedInfo(
 // ** code
 // borrow code 100 회원 없음 110 책 없음 120 대출완료 130 대출중
 // return code 200 반납 완료 210 회원 없음 220 책 없음
+data class 관리자(
+    var 아이디: String,
+    var 패스워드: String
+)
 
+var 관리자들 = ArrayList<관리자>()
 
 
 var books = ArrayList<Book>()
