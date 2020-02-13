@@ -2,7 +2,56 @@ package library.justin
 
 import library.ellen.data.*
 
+fun 추가하라관리자를() {
+    println("아이디")
+    var id = readLine()!!
+
+    println("패스워드")
+    var password = readLine()!!
+    관리자들.add(관리자(id, password))
+    println("추가되었습니다.")
+}
+
+//아이디와 패스워드를 입력받아서 둘 다 같으면 삭제
+fun 삭제하라관리자를() {
+    println("삭제할 아이디")
+    var id = readLine()!!
+    println("삭제할 아이디의 패스워드")
+    var password = readLine()!!
+    var 검색된관리자 = 관리자들.find { it.아이디 == id }
+    if (검색된관리자?.패스워드 == password) {
+        관리자들.remove(검색된관리자)
+        println(id + "님의 정보는 삭제되었습니다.")
+    } else {
+        println("삭제 실패")
+    }
+}
+
+fun 변경하라관리자비밀번호를() {
+    println("아이디")
+    var id = readLine()!!
+    println("패스워드")
+    var password = readLine()!!
+    var 찾은관리자 = 관리자들.find { it.아이디 == id }
+    if (찾은관리자 != null) {
+        찾은관리자?.패스워드 = password
+        println(id + "님의 패스워드는 변경되었습니다.")
+    }
+    else {
+        println("변경 실패")
+    }
+
+}
+
 fun main() {
+//    library.ellen.data.loadData()
+//    println(관리자들)
+//
+//   //삭제하라관리자를()
+//   // 변경하라관리자비밀번호를()
+//    println(관리자들)
+//    return
+
     library.ellen.data.loadData()
     //makeBasicInformation()
     var 관리자 = 관리자들
@@ -88,14 +137,14 @@ fun 검색해서출력하라책을() {
     }
 }
 
-// todo 로그인하는 코드 만들기
+// todo
 fun print대출현황을() {
     var 대출현황 = library.ellen.printBorrowedBook()
     if (대출현황 != null) {
         대출현황.forEach {
             print("책이름 : ")
-            it.borrowedBookInfo.forEach {
-                    b -> print("[${b.name}] ")
+            it.borrowedBookInfo.forEach { b ->
+                print("[${b.name}] ")
             }
             println("회원번호 : ${it.personNum}")
         }
@@ -107,8 +156,8 @@ fun print대출현황을() {
 
 
 fun runProgram() {
-    minsung@while (true) {
-        println("0:반납 1:검색 2:대출 3:대출현황 4:종료 및 저장 5:있는 책과 회원이름")
+    minsung@ while (true) {
+        println("0:반납 1:검색 2:대출 3:대출현황 4:종료 및 저장 5:있는 책과 회원이름 6:아이디 추가 7:아이디 삭제 8:아이디 변경")
         var userValue = readLine()!!
         when (userValue) {
             "0" -> {
@@ -135,6 +184,15 @@ fun runProgram() {
                 people.forEach { p ->
                     println("${p.name} 회원번호 : ${p.personNum}")
                 }
+            }
+            "6" -> {
+                추가하라관리자를()
+            }
+            "7" -> {
+                삭제하라관리자를()
+            }
+            "8" -> {
+                변경하라관리자비밀번호를()
             }
             else -> {
                 println("지원하지않습니다.")
