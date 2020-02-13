@@ -4,11 +4,35 @@ import library.ellen.data.*
 
 
 fun main() {
+    loadData()
 
-    makeBasicInformation()
+    var personNameToAdd = readLine()!!
+    var personNumberToAdd = readLine()!!
+    addPerson("Ellen", "001")
+    addPerson("Justin", "002")
+    addPerson("WB", "003")
+    addPerson(personNameToAdd, personNumberToAdd)
+
+    var bookNameToAdd = readLine()!!
+    var bookNumberToAdd = readLine()!!
+    addBook("Harry Potter", "001")
+    addBook("Sherlock Holmes #1", "002")
+    addBook("Sherlock Holmes #2", "003")
+    addBook(bookNameToAdd, bookNumberToAdd)
+
+    var personNumberToRemove = readLine()!!
+    var bookNumberToRemove = readLine()!!
+    removePerson("003")
+    removePerson(personNumberToRemove)
+    removeBook("003")
+    removeBook(bookNumberToRemove)
+
+    var personNumberToEdit = readLine()!!
+    var bookNumberToEdit = readLine()!!
+    editPerson(personNumberToEdit)
+    editBook(bookNumberToEdit)
+
     saveData()
-
-    // 전달 to 민성 시작할때 로드 종료할 때 세이브 할 것
 }
 
 fun searchBook(bookName: String): ArrayList<Book>? {
@@ -21,7 +45,7 @@ fun searchBook(bookName: String): ArrayList<Book>? {
         L(bookList)
         return bookList
     } else return null
-} //완료됨
+}
 
 fun borrowBook(personNumber: String, bookNumber: String): ReturnedInfo {
     var p = people.find { it.personNum == personNumber }
@@ -36,7 +60,6 @@ fun borrowBook(personNumber: String, bookNumber: String): ReturnedInfo {
                 L("${p.name} 님 ${b.name} 가 대출됨") // 지우기
                 p.borrowedBookInfo.add(b)
                 b.borrowable = false
-//                L("대출됨")
                 return ReturnedInfo(p.name, b.name, 120)
 
             }
@@ -62,7 +85,7 @@ fun returnBorrowedBooks(bookNumber: String): ReturnedInfo {
             return ReturnedInfo(p.name, b.name, 200)
         } else return ReturnedInfo(null, null, 210)
     } else return ReturnedInfo(null, null, 220)
-} // 완료됨
+}
 
 fun printBorrowedBook(): List<Person>? {
     var p = people.filter { it.borrowedBookInfo.size > 0 }
@@ -72,6 +95,85 @@ fun printBorrowedBook(): List<Person>? {
     } else return null
 }
 
+fun addPerson(personName: String, personNumber: String) {
+    var p = people.find { it.personNum == personNumber }
+
+    if (p == null) {
+        people.add(Person(personName, personNumber))
+        L(people)
+        L("회원 $personName 님이 추가되었습니다.")
+        L("회원번호는 $personNumber 입니다.")
+    } else L("잘못된 입력정보가 있습니다.")
+}
+// 회원 추가
+
+fun removePerson(personNumber: String) {
+    var p = people.find { it.personNum == personNumber && it.borrowedBookInfo.size != 0}
+
+    if (p != null) {
+        people.remove(p)
+        L(people)
+        L("회원 ${p.name} 님이 삭제되었습니다.")
+    } else L("삭제할 수 없습니다.")
+}
+//회원 삭제
+
+fun editPerson(personNumber: String) {
+    var p = people.find { it.personNum == personNumber }
+
+    if (p != null) {
+
+        L("새 이름을 입력해 주세요.")
+        var newPersonName = readLine()!!
+
+        p.name = newPersonName
+
+        L(people)
+        L("$newPersonName 님의 정보가 수정되었습니다.")
+    } else L("수정할 수 없는 값입니다.")
+}
+//회원 정보 수정
+
+
+fun addBook(bookName: String, bookNumber: String) {
+    var b = books.find { it.bookNum == bookNumber }
+
+    if (b == null) {
+        books.add(Book(bookName, bookNumber))
+        L(books)
+        L("책 $bookName 이 추가되었습니다.")
+        L("책번호는 $bookNumber 입니다.")
+    } else L("잘못된 입력정보가 있습니다.")
+}
+// 책 추가
+
+fun removeBook(bookNumber: String) {
+    var b = books.find { it.bookNum == bookNumber && it.borrowable == true}
+
+    if (b != null) {
+        books.remove(b)
+        L(books)
+        L("책 ${b.name} 이 삭제되었습니다.")
+    } else L("삭제할 수 없습니다.")
+}
+//책 삭제
+
+fun editBook(bookNumber: String) {
+    var b = books.find { it.bookNum == bookNumber }
+
+
+    if (b != null) {
+
+        L("새 책 이름을 입력해 주세요.")
+        var newBookName = readLine()!!
+
+        b.name = newBookName
+
+        L(books)
+        L("$newBookName 의 정보가 수정되었습니다.")
+    } else L("수정할 수 없는 값입니다.")
+}
+//책 정보 수정
 
 fun L(s: Any) {
     println("ellen log : $s")
@@ -84,6 +186,7 @@ fun L(s: Any, n: Int): Int {
 
 
 // 아빠답안지
+/*
 /*
 var p = people.find { it.personNum == personNumber }
 var b = books.find { b -> b.bookNum == bookNumber }
@@ -200,8 +303,8 @@ if (b != null) {
 //    }
 //
 //}
+*/
 
-// todo 저장 기능 만들기 ** data.kt && untitled  활용 
 
 
 
