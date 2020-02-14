@@ -8,23 +8,15 @@ fun main() {
 
     var personNameToAdd = readLine()!!
     var personNumberToAdd = readLine()!!
-    addPerson("Ellen", "001")
-    addPerson("Justin", "002")
-    addPerson("WB", "003")
     addPerson(personNameToAdd, personNumberToAdd)
 
     var bookNameToAdd = readLine()!!
     var bookNumberToAdd = readLine()!!
-    addBook("Harry Potter", "001")
-    addBook("Sherlock Holmes #1", "002")
-    addBook("Sherlock Holmes #2", "003")
     addBook(bookNameToAdd, bookNumberToAdd)
 
     var personNumberToRemove = readLine()!!
     var bookNumberToRemove = readLine()!!
-    removePerson("003")
     removePerson(personNumberToRemove)
-    removeBook("003")
     removeBook(bookNumberToRemove)
 
     var personNumberToEdit = readLine()!!
@@ -42,7 +34,7 @@ fun searchBook(bookName: String): ArrayList<Book>? {
         bookList.add(b)
     }
     if (bookList != ArrayList<Book>()) {
-        L(bookList)
+//        L(bookList)
         return bookList
     } else return null
 }
@@ -54,21 +46,21 @@ fun borrowBook(personNumber: String, bookNumber: String): ReturnedInfo {
     if (p != null) {
         if (b != null) {
             if (!b.borrowable) {
-                L("대출중")
+//                L("대출중")
                 return ReturnedInfo(p.name, b.name, 130)
             } else {
-                L("${p.name} 님 ${b.name} 가 대출됨") // 지우기
+//                L("${p.name} 님 ${b.name} 가 대출됨") // 지우기
                 p.borrowedBookInfo.add(b)
                 b.borrowable = false
                 return ReturnedInfo(p.name, b.name, 120)
 
             }
         } else {
-            L("책없음")
+//            L("책없음")
             return ReturnedInfo(null, null, 110)
         }
     }
-    L("회원 없음")
+//    L("회원 없음")
     return ReturnedInfo(null, null, 100)
 }
 
@@ -81,7 +73,7 @@ fun returnBorrowedBooks(bookNumber: String): ReturnedInfo {
         if (p != null) {
             b.borrowable = true
             p.borrowedBookInfo.remove(b)
-            L("${p.name} 님 ${b.name} 반납됨") // 지우기
+//            L("${p.name} 님 ${b.name} 반납됨") // 지우기
             return ReturnedInfo(p.name, b.name, 200)
         } else return ReturnedInfo(null, null, 210)
     } else return ReturnedInfo(null, null, 220)
@@ -100,7 +92,7 @@ fun addPerson(personName: String, personNumber: String) {
 
     if (p == null) {
         people.add(Person(personName, personNumber))
-        L(people)
+//        L(people)
         L("회원 $personName 님이 추가되었습니다.")
         L("회원번호는 $personNumber 입니다.")
     } else L("잘못된 입력정보가 있습니다.")
@@ -108,11 +100,11 @@ fun addPerson(personName: String, personNumber: String) {
 // 회원 추가
 
 fun removePerson(personNumber: String) {
-    var p = people.find { it.personNum == personNumber}
+    var p = people.find { it.personNum == personNumber }
 
     if (p != null) {
         people.remove(p)
-        L(people)
+//        L(people)
         L("회원 ${p.name} 님이 삭제되었습니다.")
     } else L("삭제할 수 없습니다.")
 }
@@ -128,7 +120,7 @@ fun editPerson(personNumber: String) {
 
         p.name = newPersonName
 
-        L(people)
+//        L(people)
         L("$newPersonName 님의 정보가 수정되었습니다.")
     } else L("수정할 수 없는 값입니다.")
 }
@@ -140,7 +132,7 @@ fun addBook(bookName: String, bookNumber: String) {
 
     if (b == null) {
         books.add(Book(bookName, bookNumber))
-        L(books)
+//        L(books)
         L("책 $bookName 이 추가되었습니다.")
         L("책번호는 $bookNumber 입니다.")
     } else L("잘못된 입력정보가 있습니다.")
@@ -148,11 +140,11 @@ fun addBook(bookName: String, bookNumber: String) {
 // 책 추가
 
 fun removeBook(bookNumber: String) {
-    var b = books.find { it.bookNum == bookNumber && it.borrowable == true}
+    var b = books.find { it.bookNum == bookNumber}
 
     if (b != null) {
         books.remove(b)
-        L(books)
+//        L(books)
         L("책 ${b.name} 이 삭제되었습니다.")
     } else L("삭제할 수 없습니다.")
 }
@@ -169,20 +161,17 @@ fun editBook(bookNumber: String) {
 
         b.name = newBookName
 
-        L(books)
-        L("$newBookName 의 정보가 수정되었습니다.")
+//        L(books)
+        println("$newBookName 의 정보가 수정되었습니다.")
     } else L("수정할 수 없는 값입니다.")
 }
 //책 정보 수정
 
 fun L(s: Any) {
-    println("ellen log : $s")
+    println(s)
 }
 
-fun L(s: Any, n: Int): Int {
-    println("ellen log : $s")
-    return n
-}
+
 
 
 // 아빠답안지

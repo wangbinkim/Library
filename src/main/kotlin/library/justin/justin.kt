@@ -86,7 +86,6 @@ fun 반납하라book() {
 
     when (결과값.code) {
         200 -> {
-
             println("${결과값.personName}님이 대출하신 ${결과값.bookName}은 반납이 완료되웠습니다.")
         }
         210 -> {
