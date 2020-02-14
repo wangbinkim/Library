@@ -5,14 +5,12 @@ import library.ellen.data.*
 fun 추가하라관리자를() {
     println("아이디")
     var id = readLine()!!
-
     println("패스워드")
     var password = readLine()!!
     관리자들.add(관리자(id, password))
     println("추가되었습니다.")
 }
 
-//아이디와 패스워드를 입력받아서 둘 다 같으면 삭제
 fun 삭제하라관리자를() {
     println("삭제할 아이디")
     var id = readLine()!!
@@ -36,32 +34,14 @@ fun 변경하라관리자비밀번호를() {
     if (찾은관리자 != null) {
         찾은관리자?.패스워드 = password
         println(id + "님의 패스워드는 변경되었습니다.")
-    }
-    else {
+    } else {
         println("변경 실패")
     }
 
 }
 
 fun main() {
-//    library.ellen.data.loadData()
-//    println(관리자들)
-//
-//   //삭제하라관리자를()
-//   // 변경하라관리자비밀번호를()
-//    println(관리자들)
-//    return
-
     library.ellen.data.loadData()
-    //makeBasicInformation()
-    var 관리자 = 관리자들
-    var d = 관리자들.find { it.아이디 == "천재민성님" }
-    println(d?.패스워드)
-
-    var e = 관리자들.filter { it.아이디.contains("님") }
-    e.forEach {
-        println(it.패스워드)
-    }
     print("아이디입력 :")
     var 아이디 = readLine()
     var a = 관리자들.find { it.아이디 == 아이디 }
@@ -70,7 +50,7 @@ fun main() {
     var 패스워드 = readLine()
     if (a?.패스워드 != 패스워드) {
         println("로그인 실패")
-        // return
+        return
     }
     println("로그인 성공")
     runProgram()
@@ -96,7 +76,6 @@ fun 대출하라book() {
             println("대출중인 책입니다.")
         }
     }
-// 101 102 103 104 사용
 }
 
 
@@ -104,7 +83,6 @@ fun 반납하라book() {
     println("책번호를 입력해 주세요.")
     var 반납할책 = readLine()!!
     var 결과값 = library.ellen.returnBorrowedBooks(반납할책)
-
 
     when (결과값.code) {
         200 -> {
@@ -119,7 +97,6 @@ fun 반납하라book() {
         }
     }
 }
-
 
 fun 검색해서출력하라책을() {
     println("검색할책을 입력해 주세요.")
@@ -137,7 +114,6 @@ fun 검색해서출력하라책을() {
     }
 }
 
-// todo
 fun print대출현황을() {
     var 대출현황 = library.ellen.printBorrowedBook()
     if (대출현황 != null) {
@@ -154,10 +130,12 @@ fun print대출현황을() {
     println()
 }
 
-
 fun runProgram() {
     minsung@ while (true) {
-        println("0:반납 1:검색 2:대출 3:대출현황 4:종료 및 저장 5:있는 책과 회원이름 6:아이디 추가 7:아이디 삭제 8:아이디 변경")
+        println(
+            "0: 반납 1: 검색 2: 대출 3:대출현황 4:종료 및 저장 5:있는 책과 회원이름 6:관리자 관리 " +
+                    "7: 회원정보 관리 8: 책 관리"
+        )
         var userValue = readLine()!!
         when (userValue) {
             "0" -> {
@@ -186,25 +164,64 @@ fun runProgram() {
                 }
             }
             "6" -> {
-                추가하라관리자를()
+                println("1: 관리자 추가 2: 관리자 삭제 3: 관리자 비밀번호변경")
+                var inputValue = readLine()!!
+                when (inputValue) {
+                    "1" -> 추가하라관리자를()
+                    "2" -> 삭제하라관리자를()
+                    "3" -> 변경하라관리자비밀번호를()
+                }
+
             }
             "7" -> {
-                삭제하라관리자를()
+                println("1: 회원 추가 2: 회원 삭제 3: 회원 이름변경")
+                var inputValue = readLine()!!
+                when (inputValue) {
+                    "1" -> {
+                        println("추가할 회원이름 입력")
+                        var personNameToAdd = readLine()!!
+                        println("추가할 회원번호 입력")
+                        var personNumberToAdd = readLine()!!
+                        library.ellen.addPerson(personNameToAdd, personNumberToAdd)
+                    }
+                    "2" -> {
+                        println("삭제할 회원번호 입력")
+                        var personNumberToRemove = readLine()!!
+                        library.ellen.removePerson(personNumberToRemove)
+                    }
+                    "3" -> {
+                        println("수정할 회원번호 입력")
+                        var personNumberToEdit = readLine()!!
+                        library.ellen.editPerson(personNumberToEdit)
+                    }
+                }
             }
             "8" -> {
-                변경하라관리자비밀번호를()
+                println("1: 책 추가 2: 책 삭제 3: 책 이름변경")
+                var inputValue = readLine()!!
+                when (inputValue) {
+                    "1" -> {
+                        println("추가할 책 입력")
+                        var bookNameToAdd = readLine()!!
+                        println("추가할 책번호 입력")
+                        var bookNumberToAdd = readLine()!!
+                        library.ellen.addBook(bookNameToAdd, bookNumberToAdd)
+                    }
+                    "2" -> {
+                        println("삭제할 책번호 입력")
+                        var bookNumberToRemove = readLine()!!
+                        library.ellen.removeBook(bookNumberToRemove)
+                    }
+                    "3" -> {
+                        println("수정할 책번호 입력")
+                        var bookNumberToEdit = readLine()!!
+                        library.ellen.editBook(bookNumberToEdit)
+                    }
+                }
             }
             else -> {
                 println("지원하지않습니다.")
             }
         }
     }
-}
-
-fun saveData(books: ArrayList<Book>, people: ArrayList<Person>) {
-
-}
-
-fun loadData() {
-
 }

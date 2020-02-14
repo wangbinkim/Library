@@ -108,7 +108,7 @@ fun addPerson(personName: String, personNumber: String) {
 // 회원 추가
 
 fun removePerson(personNumber: String) {
-    var p = people.find { it.personNum == personNumber && it.borrowedBookInfo.size != 0}
+    var p = people.find { it.personNum == personNumber}
 
     if (p != null) {
         people.remove(p)
